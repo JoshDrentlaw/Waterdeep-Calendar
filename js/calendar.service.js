@@ -6,7 +6,8 @@ let calendar = {
             "celebrations": [
                 {
                     "day": 1,
-                    "name": "Wintershield"
+                    "name": "Wintershield",
+                    "desc": ""
                 }
             ]
         },
@@ -16,7 +17,8 @@ let calendar = {
             "celebrations": [
                 {
                     "day": 14,
-                    "name": "The Grand Revel"
+                    "name": "The Grand Revel",
+                    "desc": ""
                 }
             ]
         },
@@ -232,7 +234,7 @@ function getFullMoon() {
 }
 
 // This will be a call to the localStorage service eventually.
-let currentMonth = "Hammer";
+let currentMonth = "Tarsahk";
 
 export function nextMonth() {
     let holidays = getHolidays(currentMonth);
