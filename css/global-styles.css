@@ -3,7 +3,7 @@
   font-family: "Dungeon";
   src: url("../fonts/DUNGRG.eot");
   /* IE9 Compat Modes */
-  src: url("../fonts/DUNGRG.eot?#iefix") format("embedded-opentype"), url("./fonts/DUNGRG.otf") format("opentype"), url("../fonts/DUNGRG.svg") format("svg"), url("../fonts/DUNGRG.ttf") format("truetype"), url("../fonts/DUNGRG.woff") format("woff"), url("../fonts/DUNGRG.woff2") format("woff2");
+  src: url("../fonts/DUNGRG.eot?#iefix") format("embedded-opentype"), url("../fonts/DUNGRG.otf") format("opentype"), url("../fonts/DUNGRG.svg") format("svg"), url("../fonts/DUNGRG.ttf") format("truetype"), url("../fonts/DUNGRG.woff") format("woff"), url("../fonts/DUNGRG.woff2") format("woff2");
   /* Modern Browsers */
   font-weight: normal;
   font-style: normal;
