@@ -6,13 +6,20 @@ import { nextMonth, prevMonth } from './calendar.service.js';
 
     let monthEl = document.getElementById('month');
     let days = document.getElementsByClassName('day');
+    let dates = document.getElementsByClassName('date');
+
+    // Write days. Only needs to happen once. Every month is the same.
+    let i = 1;
+    for (let el of dates) {
+        el.innerHTML += i;
+        i++;
+    }
     
     // Changes the month and adds holidays to it
     function changeMonth() {
-        let newMonth = nextMonth(); // Get new month from service.
-        let holidays = newMonth.holidays;
-        let month = newMonth.currentMonth;
-
+        // Get new month from service.
+        let { holidays: holidays, currentMonth: month } = nextMonth();
+        
         writeMonth(month);
         writeHolidays(holidays)
     }
@@ -28,15 +35,15 @@ import { nextMonth, prevMonth } from './calendar.service.js';
         holidays.map(holiday => {
             // 2. Loop thru days.
             // We need to find a day that matches our holiday.
-            for (let day of days) {
+            for (let date of dates) {
                 // 3. Some holidays last more than 1 day.
                 // These holidays are stored in an array.
                 if (Array.isArray(holiday.day)) {
                     // 4. Loop thru multi-day array
                     holiday.day.map(val => {
                         // 5. Write when you have a match.
-                        if (day.innerHTML == val) {
-                            day.innerHTML += `
+                        if (date.innerHTML == val) {
+                            date.innerHTML += `
                                 <p>${holiday.name}</p>
                             `;
                         }

@@ -1,7 +1,7 @@
 (function () {
     /* HANDLE ANIMATIONS */
 
-    let days = document.getElementsByClassName('day');
+    let days = document.getElementsByClassName('day-event-catcher');
     let hoverTimeoutId;
 
     // Add hover event listeners to every day.
@@ -12,7 +12,7 @@
 
     // Called when mouse hovers over a day.
     function hoverDay(e) {
-        let day = e.target;
+        let day = e.target.parentElement;
         // Only hover if 600ms goes by.
         hoverTimeoutId = setTimeout(() => {
             day.className += ' ' + 'lift';
@@ -21,7 +21,7 @@
 
     // Called when mouse leaves a day.
     function outDay(e) {
-        let day = e.target;
+        let day = e.target.parentElement;
         // Clear the timeout when the mouse leaves.
         // If removed, hover will always occur after 600ms, even
         // if the mouse leaves before then.
