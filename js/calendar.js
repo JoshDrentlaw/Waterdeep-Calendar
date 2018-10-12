@@ -5,7 +5,7 @@ import { nextMonth, prevMonth } from './calendar.service.js';
     /* CHANGE MONTH */
 
     let monthEl = document.getElementById('month');
-    let days = document.getElementsByClassName('day');
+    let days = document.getElementsByClassName('day-container');
     let dates = document.getElementsByClassName('date');
 
     // Write days. Only needs to happen once. Every month is the same.
@@ -43,7 +43,7 @@ import { nextMonth, prevMonth } from './calendar.service.js';
                     holiday.day.map(val => {
                         // 5. Write when you have a match.
                         if (date.innerHTML == val) {
-                            date.innerHTML += `
+                            date.parentElement.innerHTML += `
                                 <p>${holiday.name}</p>
                             `;
                         }
@@ -53,7 +53,7 @@ import { nextMonth, prevMonth } from './calendar.service.js';
                 else {
                     // 7. Write holiday if it matches the day.
                     if (day.innerHTML == holiday.day) {
-                        day.innerHTML += `
+                        day.parentElement.innerHTML += `
                             <p>${holiday.name}</p>
                         `;
                     }
