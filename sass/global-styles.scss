@@ -29,27 +29,3 @@ h1 {
     text-align: center;
     margin-block-end: 0.25em;
 }
-
-/* CLASSES */
-
-.fab {
-    color: white;
-    background-color: red;
-    border-radius: 50%;
-    border: none;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    box-shadow: 1px 1px 1px 0px black;
-    visibility: hidden;
-    box-sizing: border-box;
-
-    &:focus {
-        outline: none;
-        right: -1px;
-        bottom: -1px;
-        box-shadow: 0 0 1px 0px black;
-    }
-}

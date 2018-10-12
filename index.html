@@ -15,7 +15,13 @@
             <h1>Waterdeep Calendar</h1>
             <section id="calendar-container">
                 <div id="calendar-grid">
-                    <header id="month">Hammer</header>
+                    <!-- MONTH HEADER -->
+                    <div class="flex-center" id="year"></div>
+                    <div class="flex-center" id="prev-year">&lt;</div>
+                    <header class="flex-center" id="month">Hammer</header>
+                    <div class="flex-center" id="next-year">&gt;</div>
+                    <div class="flex-center" id="year-common-name"></div>
+                    <!-- DAY NAME HEADERS -->
                     <div class="day-header">First</div>
                     <div class="day-header">Second</div>
                     <div class="day-header">Third</div>
@@ -26,6 +32,7 @@
                     <div class="day-header">Eighth</div>
                     <div class="day-header">Ninth</div>
                     <div class="day-header">Tenth</div>
+                    <!-- DAYS -->
                     <div class="day">
                         <div class="day-container">
                             <button class="fab">+</button>

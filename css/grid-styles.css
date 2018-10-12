@@ -1,4 +1,10 @@
 /* CLASSES */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .day-header {
   font-size: 2em;
   display: flex;
@@ -28,6 +34,27 @@
   left: 0;
 }
 
+.fab {
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-shadow: 1px 1px 1px 0px black;
+  visibility: hidden;
+  box-sizing: border-box;
+}
+.fab:focus {
+  outline: none;
+  right: -1px;
+  bottom: -1px;
+  box-shadow: 0 0 1px 0px black;
+}
+
 /* ID'S */
 #calendar-container {
   border-right: none;
@@ -41,12 +68,22 @@
   grid-auto-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
+#prev-year, #next-year {
+  font-size: 2em;
+}
+
+#year {
+  grid-column: 1/span 2;
+}
+
 #month {
-  grid-column: 1/span 10;
+  grid-column: 4/span 4;
   font-size: 6em;
-  display: flex;
-  justify-content: center;
   background-color: #e67070;
+}
+
+#year-common-name {
+  grid-column: 9/span 2;
 }
 
 /* ANIMATION @'S AND CLASSES */
