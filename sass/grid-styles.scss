@@ -88,6 +88,10 @@
         position: relative;
         animation: lift-contents 0.2s ease-in 0s 1 normal forwards;
     }
+
+    .fab {
+        visibility: visible;
+    }
 }
 
 @keyframes drop {

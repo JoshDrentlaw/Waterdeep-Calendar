@@ -83,6 +83,9 @@
   position: relative;
   animation: lift-contents 0.2s ease-in 0s 1 normal forwards;
 }
+.lift .fab {
+  visibility: visible;
+}
 
 @keyframes drop {
   from {
