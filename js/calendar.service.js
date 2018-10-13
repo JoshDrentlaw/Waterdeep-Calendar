@@ -234,24 +234,28 @@ function getFullMoon() {
 }
 
 // This will be a call to the localStorage service eventually.
-let currentMonth = "Tarsahk";
+let currentMonth = 0;
+
+export let month = calendar.months[currentMonth];
+
+function getMonth(direction) {
+    switch (direction) {
+        case "next":
+            currentMonth = (currentMonth == 11) ? 0 : ++currentMonth;
+            break;
+        case "prev":
+            currentMonth = (currentMonth == 0) ? 11 : --currentMonth;
+            break;
+    }
+    return calendar.months[currentMonth];
+}
 
 export function nextMonth() {
-    let holidays = getHolidays(currentMonth);
-    return {
-        holidays,
-        currentMonth
-    };
+    month = getMonth("next");
+    return month;
 }
 
 export function prevMonth() {
-
-}
-
-function getHolidays(month) {
-    for (let match of calendar.months) {
-        if (month == match.name) {
-            return match.celebrations;
-        }
-    }
+    month = getMonth("prev");
+    return month;
 }
