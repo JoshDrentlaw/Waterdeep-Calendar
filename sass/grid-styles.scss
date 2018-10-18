@@ -1,3 +1,9 @@
+/* VARIABLES */
+
+$month-header: rgb(230, 112, 112);
+$day-header: rgb(200, 141, 141);
+$day: rgb(214, 128, 128);
+
 /* CLASSES */
 
 .flex-center {
@@ -10,8 +16,8 @@
     font-size: 2em;
     display: flex;
     justify-content: center;
-    padding: 5px 0;
-    background-color: rgb(200, 141, 141);
+    padding: 3px 0;
+    background-color: $day-header;
 }
 
 .day {
@@ -19,7 +25,7 @@
     position: relative;
     padding: 8%;
     text-overflow: ellipsis;
-    background-color: rgb(214, 128, 128);
+    background-color: $day;
     position: relative;
 }
 
@@ -57,17 +63,26 @@
     }
 }
 
+.show {
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
+}
+
 /* ID'S */
 
 #calendar-container {
     border-right: none;
     width: 60%;
+    position: relative;
 }
 
 #calendar-grid {
-    background-color: rgb(230, 112, 112);
+    background-color: $month-header;
     display: grid;
-    grid-auto-rows: auto auto 150px 150px 150px;
+    grid-auto-rows: 155px 40px 150px 150px 150px;
     grid-auto-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
@@ -78,13 +93,14 @@
 
 #year {
     grid-column: 1 / span 2;
+    font-size: 3em;
 }
 
 #month-container {
     grid-column: 4 / span 4;
     display: flex;
     flex-direction: column;
-    background-color: rgb(230, 112, 112);
+    background-color: $month-header;
 }
 
 #month {
@@ -99,6 +115,15 @@
 
 #year-common-name {
     grid-column: 9 / span 2;
+    font-size: 3em;
+}
+
+#major-holiday-overlay {
+    background-color: $day;
+    width: 100%;
+    height: 490px;
+    position: relative;
+    top: -490px;
 }
 
 /* ANIMATION @'S AND CLASSES */
