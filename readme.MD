@@ -5,4 +5,3 @@ Interactive calendar to help you keep track of holidays in Waterdeep, the city o
 ## Todo
 
 * Add your own notes to the calendar.
-* Implement localStorage.
