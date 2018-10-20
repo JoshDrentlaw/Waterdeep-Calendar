@@ -229,9 +229,38 @@ function getFullMoon() {
 
 }
 
-// This will be a call to the localStorage service eventually.
-let currentMonth = 0;
-export let currentYear = 1491;
+let currentMonth;
+export let currentYear;
+
+// Check if localStorage is enabled.
+if (typeof(Storage) !== "undefined") {
+    // Is the current month already saved?
+    if (localStorage.month) {
+        // Load from storage.
+        currentMonth = Number(localStorage.month);
+    }
+    else {
+        // Set storage.
+        localStorage.setItem('month', '0');
+        // Load default.
+        currentMonth = 0;
+    }
+    // Is the current year already saved?
+    if (localStorage.year) {
+        // Load from stoarge.
+        currentYear = Number(localStorage.year);
+    }
+    else {
+        // Set storage.
+        localStorage.setItem('year', '1491');
+        // Load default.
+        currentYear = 1491;
+    }
+}
+else {
+    currentMonth = 0;
+    currentYear = 1491;
+}
 
 export let month = calendar[currentMonth];
 
@@ -246,6 +275,8 @@ function getMonth(direction) {
             currentYear = (currentMonth == 17) ? --currentYear : currentYear;
             break;
     }
+    localStorage.setItem('month', currentMonth);
+    localStorage.setItem('year', currentYear);
     return calendar[currentMonth];
 }
 

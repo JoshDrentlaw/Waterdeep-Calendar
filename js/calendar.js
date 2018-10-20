@@ -43,6 +43,7 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
             newMonth = month;
         }
         else {
+            // Shieldmeet only happens on a leap year, so we utilize the modulo to check this.
             if (e.target.id == "next-month") {
                 newMonth = nextMonth();
                 if (newMonth.name == "Shieldmeet") {
@@ -132,18 +133,15 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
                 return name;
             }
         });
-        console.log(match);
         if (match.length == 1) {
             writeMajorHoliday(desc);
         }
         else {
-            console.log('remove major holiday class');
             document.getElementById('major-holiday-overlay').className = 'hide';
         }
     }
 
     function writeMajorHoliday(desc) {
-        console.log('writeMajorHoliday');
         let overlay = document.getElementById('major-holiday-overlay');
         overlay.className = 'show';
     }
