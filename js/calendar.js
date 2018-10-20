@@ -1,4 +1,4 @@
-import { month, nextMonth, prevMonth } from './calendar.service.js';
+import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js';
 
 (function() {
 
@@ -15,6 +15,7 @@ import { month, nextMonth, prevMonth } from './calendar.service.js';
 
     /* CHANGE MONTH */
 
+    let yearEl = document.getElementById('current-year');
     let monthEl = document.getElementById('month');
     let commonEl = document.getElementById('common-name');
     let dates = document.getElementsByClassName('date');
@@ -33,16 +34,38 @@ import { month, nextMonth, prevMonth } from './calendar.service.js';
     
     // Changes the month and adds holidays to it
     function renderMonth(e) {
+        let newMonth;
         // Get new month from service.
         // renderMonth is called once when the script loads outside of an event handler,
         //   so the first time it loads, e will be undefined. After that it'll come from
         //   an event handler.
+        if (e === undefined) {
+            newMonth = month;
+        }
+        else {
+            if (e.target.id == "next-month") {
+                newMonth = nextMonth();
+                if (newMonth.name == "Shieldmeet") {
+                    if (currentYear % 4 != 0) {
+                        newMonth = nextMonth();
+                    }
+                }
+            }
+            else {
+                newMonth = prevMonth();
+                if (newMonth.name == "Shieldmeet") {
+                    if (currentYear % 4 != 0) {
+                        newMonth = prevMonth();
+                    }
+                }
+            }
+        }
         let {
             name: name,
             commonName: common,
             celebrations: holidays,
             desc: desc
-        } = ((e === undefined) ? month : (e.target.id == "next-month") ? nextMonth() : prevMonth());
+        } = newMonth;
 
         writeMonth(name, common);
         writeHolidays(holidays);
@@ -55,7 +78,14 @@ import { month, nextMonth, prevMonth } from './calendar.service.js';
 
     // Update calendar month name.
     function writeMonth(name, common) {
+        yearEl.innerHTML = currentYear;
         monthEl.innerHTML = name;
+        if (name == "The Feast of the Moon") {
+            monthEl.style = "font-size: 4.3em;";
+        }
+        else {
+            monthEl.style = "font-size: 6em;";
+        }
         commonEl.innerHTML = (common === undefined) ? "" : common;
     }
 
@@ -104,7 +134,7 @@ import { month, nextMonth, prevMonth } from './calendar.service.js';
         });
         console.log(match);
         if (match.length == 1) {
-            writeMajorHoliday(name, desc);
+            writeMajorHoliday(desc);
         }
         else {
             console.log('remove major holiday class');
@@ -112,7 +142,7 @@ import { month, nextMonth, prevMonth } from './calendar.service.js';
         }
     }
 
-    function writeMajorHoliday(name, desc) {
+    function writeMajorHoliday(desc) {
         console.log('writeMajorHoliday');
         let overlay = document.getElementById('major-holiday-overlay');
         overlay.className = 'show';

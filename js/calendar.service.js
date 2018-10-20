@@ -231,16 +231,19 @@ function getFullMoon() {
 
 // This will be a call to the localStorage service eventually.
 let currentMonth = 0;
+export let currentYear = 1491;
 
 export let month = calendar[currentMonth];
 
 function getMonth(direction) {
     switch (direction) {
         case "next":
-            currentMonth = (currentMonth == 11) ? 0 : ++currentMonth;
+            currentMonth = (currentMonth == 17) ? 0 : ++currentMonth;
+            currentYear = (currentMonth == 0) ? ++currentYear : currentYear;
             break;
         case "prev":
-            currentMonth = (currentMonth == 0) ? 11 : --currentMonth;
+            currentMonth = (currentMonth == 0) ? 17 : --currentMonth;
+            currentYear = (currentMonth == 17) ? --currentYear : currentYear;
             break;
     }
     return calendar[currentMonth];

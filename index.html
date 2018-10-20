@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="description" content="Calendar app for use with Waterdeep: Dragon Heist">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <title>Waterdeep Calendar</title>
 
@@ -16,7 +17,7 @@
             <section id="calendar-container">
                 <div id="calendar-grid">
                     <!-- MONTH HEADER -->
-                    <div class="flex-center" id="year">1491 DR</div>
+                    <div class="flex-center" id="year"><span id="current-year">1491</span> DR</div>
                     <div class="flex-center" id="prev-month">&lt;</div>
                     <div class="flex-center" id="month-container">
                         <header id="month">Hammer</header>
@@ -71,7 +72,7 @@
             </section>
         </main>
 
-        <script src="./js/calendar.animations.js"></script>
+        <!-- <script src="./js/calendar.animations.js"></script> -->
         <script type="module" src="./js/calendar.js"></script>
     </body>
 </html>
