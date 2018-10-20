@@ -12,7 +12,7 @@ let calendar = [
     },
     {
         "name": "Midwinter",
-        "desc": ""
+        "desc": "<p>The High Festival of winter!</p><p>Today we commemorate and renew our bonds of trust and friendship.</p><p>Also celebrated as Deadwinter by those in extremely cold weather climates to mark the midpoint of the season.</p><p>There's hard times still ahead of us, but most of the worst are behind us.</p>"
     },
     {
         "name": "Alturiak",
@@ -59,7 +59,7 @@ let calendar = [
     },
     {
         "name": "Greengrass",
-        "desc": ""
+        "desc": "<p>Spring is here!</p><p>The smell of freshly cut flowers are in the air, and the hills and fields are alive and green.</p><p>The Gods are ready to receive our gifts and bestow a bountiful and speedy growing season upon us.</p>"
     },
     {
         "name": "Mirtul",
@@ -116,11 +116,11 @@ let calendar = [
     },
     {
         "name": "Midsummer",
-        "desc": ""
+        "desc": "<p>Summer's midpoint is upon us.</p><p>Find a cool place and enjoy the feasting and carousing with your fellow citizens!</p><p>It's the perfect time to tell that special someone just how much you really care about them!</p><p>Pray for clear skies on Midsummer night, for the Gods look upon us this day.</p>"
     },
     {
         "name": "Shieldmeet",
-        "desc": ""
+        "desc": "<p>It is once again time for the day of Shieldmeet!</p><p>Speak your mind today and hear the open council of all.</p><p>Test your mettle and your skill against the best in the land.</p><p>Observe the Gods and their lessons for us.</p><p>4 years time is not as long as it seems.</p>"
     },
     {
         "name": "Eleasis",
@@ -146,7 +146,7 @@ let calendar = [
     },
     {
         "name": "Highharvestide",
-        "desc": ""
+        "desc": "<p>The fall harvest is here!</p><p>Give praise to Chauntea and all the Gods that bring us our bountiful harvest, and the nourishment we need for the long winter ahead.</p><p>We wish the caravans and sailors luck on their pre-winter trek, for the winter winds are sure to come on in full force soon!</p>"
     },
     {
         "name": "Marpenoth",
@@ -197,7 +197,7 @@ let calendar = [
     },
     {
         "name": "The Feast of the Moon",
-        "desc": ""
+        "desc": "<p>The long nights and winter winds are upon us.</p><p>Today we honor our dead; our loving ancestors, and our brave protectors.</p><p>Share your stories and legends, and offer a prayer for those who have fallen.</p><p>Do not forget that winter is here and that you must be prepared.</p>"
     },
     {
         "name": "Nightal",

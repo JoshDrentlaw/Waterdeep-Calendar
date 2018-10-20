@@ -143,6 +143,8 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
 
     function writeMajorHoliday(desc) {
         let overlay = document.getElementById('major-holiday-overlay');
+        let descContainer = document.getElementById('major-holiday-desc');
         overlay.className = 'show';
+        descContainer.innerHTML = desc;
     }
 } ());

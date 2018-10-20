@@ -126,6 +126,17 @@ $day: rgb(214, 128, 128);
     top: -490px;
 }
 
+#major-holiday-desc {
+    text-align: center;
+    font-size: 3em;
+    padding: 20px;
+    padding-top: 5px;
+
+    p {
+        margin: 0.25em 0;
+    }
+}
+
 /* ANIMATION @'S AND CLASSES */
 
 @keyframes lift {
