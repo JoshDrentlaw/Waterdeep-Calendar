@@ -16,6 +16,7 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
     /* CHANGE MONTH */
 
     let yearEl = document.getElementById('current-year');
+    let yearNameEl = document.getElementById('year-common-name');
     let monthEl = document.getElementById('month');
     let commonEl = document.getElementById('common-name');
     let dates = document.getElementsByClassName('date');
@@ -79,7 +80,9 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
 
     // Update calendar month name.
     function writeMonth(name, common) {
-        yearEl.innerHTML = currentYear;
+        console.log(currentYear);
+        yearEl.innerHTML = currentYear.year;
+        yearNameEl.innerHTML = currentYear.name;
         monthEl.innerHTML = name;
         if (name == "The Feast of the Moon") {
             monthEl.style = "font-size: 4.3em;";

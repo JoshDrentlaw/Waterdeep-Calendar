@@ -67,7 +67,7 @@
 /* ID'S */
 #calendar-container {
   border-right: none;
-  width: 60%;
+  width: 75%;
   position: relative;
 }
 
@@ -107,7 +107,8 @@
 
 #year-common-name {
   grid-column: 9/span 2;
-  font-size: 3em;
+  font-size: 2.8em;
+  text-align: center;
 }
 
 #major-holiday-overlay {

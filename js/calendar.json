@@ -1,4 +1,4 @@
-let calendar = [
+[
     {
         "name": "Hammer",
         "commonName": "Deepwinter",
@@ -6,7 +6,7 @@ let calendar = [
             {
                 "day": 1,
                 "name": "Wintershield",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -21,7 +21,7 @@ let calendar = [
             {
                 "day": 14,
                 "name": "The Grand Revel",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -32,17 +32,17 @@ let calendar = [
             {
                 "day": 1,
                 "name": "Rhyestertide",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 19,
                 "name": "Fey Day",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": [21,22,23,24,25,26,27,28,29,30],
                 "name": "Fleetswake",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -53,7 +53,7 @@ let calendar = [
             {
                 "day": [1,2,3,4,5,6,7,8,9,10],
                 "name": "Waukeentide",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -68,7 +68,7 @@ let calendar = [
             {
                 "day": [6,7,8,9],
                 "name": "The Plowing and Running",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -79,17 +79,17 @@ let calendar = [
             {
                 "day": 1,
                 "name": "Trolltide",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 14,
                 "name": "Guildhall Day",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 20,
                 "name": "Dragondown",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -100,17 +100,17 @@ let calendar = [
             {
                 "day": 1,
                 "name": "Founder's Day",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": [3,4,5],
                 "name": "Sornyn",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 7,
                 "name": "Lilira's Night",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -129,7 +129,7 @@ let calendar = [
             {
                 "day": 1,
                 "name": "Ahghairon's Day",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -140,7 +140,7 @@ let calendar = [
             {
                 "day": 21,
                 "name": "Brightswords",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -155,27 +155,27 @@ let calendar = [
             {
                 "day": 3,
                 "name": "Day of Wonders",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 7,
                 "name": "Stoneshar",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 10,
                 "name": "Reign of Misrule",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 15,
                 "name": "Gods' Day",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 30,
                 "name": "Liar's Night",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -184,14 +184,14 @@ let calendar = [
         "commonName": "The Rotting",
         "celebrations": [
             {
-                "day": getFullMoon(),
+                "day": "getFullMoon()",
                 "name": "Selune's Hallowing",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 20,
                 "name": "Last Sheaf",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     },
@@ -206,86 +206,13 @@ let calendar = [
             {
                 "day": 11,
                 "name": "Howldown",
-                "desc": ""
+                "desc": "todo"
             },
             {
                 "day": 20,
                 "name": "Simril",
-                "desc": ""
+                "desc": "todo"
             }
         ]
     }
-];
-
-// Selune's Hallowing occurs on the full moon.
-// It takes place in the month of Uktar, which
-//   lines up with November.
-// The calendar will use the full moon of the
-//   November of the year that corrisponds
-//   to the current Dale Reckoning year
-//   of the calendar.
-// i.e. If DR = 1491, GET full moon for Nov. 1491
-function getFullMoon() {
-
-}
-
-let currentMonth;
-export let currentYear;
-
-// Check if localStorage is enabled.
-if (typeof(Storage) !== "undefined") {
-    // Is the current month already saved?
-    if (localStorage.month) {
-        // Load from storage.
-        currentMonth = Number(localStorage.month);
-    }
-    else {
-        // Set storage.
-        localStorage.setItem('month', '0');
-        // Load default.
-        currentMonth = 0;
-    }
-    // Is the current year already saved?
-    if (localStorage.year) {
-        // Load from stoarge.
-        currentYear = Number(localStorage.year);
-    }
-    else {
-        // Set storage.
-        localStorage.setItem('year', '1491');
-        // Load default.
-        currentYear = 1491;
-    }
-}
-else {
-    currentMonth = 0;
-    currentYear = 1491;
-}
-
-export let month = calendar[currentMonth];
-
-function getMonth(direction) {
-    switch (direction) {
-        case "next":
-            currentMonth = (currentMonth == 17) ? 0 : ++currentMonth;
-            currentYear = (currentMonth == 0) ? ++currentYear : currentYear;
-            break;
-        case "prev":
-            currentMonth = (currentMonth == 0) ? 17 : --currentMonth;
-            currentYear = (currentMonth == 17) ? --currentYear : currentYear;
-            break;
-    }
-    localStorage.setItem('month', currentMonth);
-    localStorage.setItem('year', currentYear);
-    return calendar[currentMonth];
-}
-
-export function nextMonth() {
-    month = getMonth("next");
-    return month;
-}
-
-export function prevMonth() {
-    month = getMonth("prev");
-    return month;
-}
+]
