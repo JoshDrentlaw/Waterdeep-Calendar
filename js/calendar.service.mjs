@@ -25,6 +25,8 @@ let years = [
     }
 ];
 
+import DynamoDB from 'aws-sdk';
+
 let AWS = require('aws-sdk');
 
 AWS.config.update({endpoint: "https://dynamodb.us-east-1.amazonaws.com"});
@@ -33,7 +35,7 @@ let docClient = new AWS.DynamoDB.DocumentClient();
 let table = "Waterdeep-Calendar";
 
 let currentMonth;
-let currentYear;
+export let currentYear;
 let y = 3; // Index for the year array.
 
 // Check if localStorage is enabled.
@@ -79,7 +81,7 @@ let params = {
     }
 };
 
-let month = docClient.get(params, (err, data) => {
+export let month = docClient.get(params, (err, data) => {
     if (err) {
         console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
     }
@@ -108,12 +110,12 @@ function getMonth(direction) {
     return calendar[currentMonth];
 }
 
-function nextMonth() {
+export function nextMonth() {
     month = getMonth("next");
     return month;
 }
 
-function prevMonth() {
+export function prevMonth() {
     month = getMonth("prev");
     return month;
 }
@@ -129,5 +131,3 @@ function prevMonth() {
 function getFullMoon() {
 
 }
-
-module.exports = { currentYear, month, nextMonth, prevMonth };
