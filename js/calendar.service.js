@@ -25,16 +25,8 @@ let years = [
     }
 ];
 
-import DynamoDB from 'aws-sdk';
-
-let AWS = require('aws-sdk');
-
-AWS.config.update({endpoint: "https://dynamodb.us-east-1.amazonaws.com"});
-
-let docClient = new AWS.DynamoDB.DocumentClient();
-let table = "Waterdeep-Calendar";
-
 let currentMonth;
+let currentMonthName;
 export let currentYear;
 let y = 3; // Index for the year array.
 
@@ -44,12 +36,15 @@ if (typeof(Storage) !== "undefined") {
     if (localStorage.month) {
         // Load from storage.
         currentMonth = Number(localStorage.month);
+        currentMonthName = localStorage.monthName;
     }
     else {
         // Set storage.
         localStorage.setItem('month', '0');
+        localStorage.setItem('monthName', 'Hammer');
         // Load default.
         currentMonth = 0;
+        currentMonthName = 'Hammer';
     }
     // Is the current year already saved?
     if (localStorage.year) {
@@ -70,30 +65,13 @@ if (typeof(Storage) !== "undefined") {
     }
 }
 else {
+    // LocalStorage is disabled. Load these defaults.
     currentMonth = 0;
+    currentMonthName = 'Hammer';
     currentYear = years[y];
 }
 
-let params = {
-    TableName: table,
-    Key: {
-        "MonthId": currentMonth
-    }
-};
-
-export let month = docClient.get(params, (err, data) => {
-    if (err) {
-        console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
-    }
-    else {
-        console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
-        return data;
-    }
-});
-
-console.log(month);
-
-function getMonth(direction) {
+function newMonth(direction) {
     switch (direction) {
         case "next":
             currentMonth = (currentMonth == 17) ? 0 : ++currentMonth;
@@ -107,16 +85,45 @@ function getMonth(direction) {
     currentYear = years[y];
     localStorage.setItem('month', currentMonth);
     localStorage.setItem('year', years[y].year);
-    return calendar[currentMonth];
+    return getMonth(currentMonth);
 }
 
+let converter = AWS.DynamoDB.Converter;
+let endpoint = 'https://s8g7la72ha.execute-api.us-east-1.amazonaws.com/beta/calendar?MonthId=';
+function getMonth(monthId) {
+    return new Promise((res) => {
+        res(fetch(endpoint + monthId)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                let unmarshalled = converter.unmarshall(data.Items[0]);
+                let month = {
+                    name: unmarshalled.MonthName,
+                    commonName: unmarshalled.commonName,
+                    celebrations: unmarshalled.celebrations,
+                    desc: unmarshalled.desc
+                }
+                console.log('month sent to calendar.js:',month);
+                return month;
+            })
+            .catch(reason => { console.log(reason); })
+        );
+    });
+    
+}
+
+export let month = getMonth(currentMonth);
+
 export function nextMonth() {
-    month = getMonth("next");
+    month = newMonth("next");
+    console.log('returned from newMonth("next"):', month);
     return month;
 }
 
 export function prevMonth() {
-    month = getMonth("prev");
+    month = newMonth("prev");
+    console.log('returned from newMonth("prev"):', month);
     return month;
 }
 

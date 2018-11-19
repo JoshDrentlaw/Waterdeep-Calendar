@@ -1,4 +1,4 @@
-import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js';
+import { currentYear } from './calendar.service.js';
 
 (function() {
 
@@ -21,10 +21,10 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
     let commonEl = document.getElementById('common-name');
     let dates = document.getElementsByClassName('date');
 
-    let nextButton = document.getElementById('next-month')
-        .addEventListener('click', renderMonth);
-    let prevButton = document.getElementById('prev-month')
-        .addEventListener('click', renderMonth);
+    document.getElementById('next-month')
+        .addEventListener('click', getMonth);
+    document.getElementById('prev-month')
+        .addEventListener('click', getMonth);
 
     // Write days. Only needs to happen once. Every month is the same.
     let i = 1;
@@ -34,34 +34,47 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
     }
     
     // Changes the month and adds holidays to it
-    function renderMonth(e) {
-        let newMonth;
-        // Get new month from service.
-        // renderMonth is called once when the script loads outside of an event handler,
-        //   so the first time it loads, e will be undefined. After that it'll come from
-        //   an event handler.
-        if (e === undefined) {
-            newMonth = month;
-        }
-        else {
-            // Shieldmeet only happens on a leap year, so we utilize the modulo to check this.
-            if (e.target.id == "next-month") {
-                newMonth = nextMonth();
-                if (newMonth.name == "Shieldmeet") {
-                    if (currentYear % 4 != 0) {
-                        newMonth = nextMonth();
-                    }
-                }
+    function getMonth(e) {
+        import('./calendar.service.js').then((calendar) => {
+            // Get new month from service.
+            // renderMonth is called once when the script loads outside of an event handler,
+            //   so the first time it loads, e will be undefined. After that it'll come from
+            //   an event handler.
+            if (e === undefined) {
+                calendar.month.then(month => { renderMonth(month); });
             }
             else {
-                newMonth = prevMonth();
-                if (newMonth.name == "Shieldmeet") {
-                    if (currentYear % 4 != 0) {
-                        newMonth = prevMonth();
-                    }
+                // Shieldmeet only happens on a leap year, so we utilize the modulo to check this.
+                if (e.target.id == "next-month") {
+                    calendar.nextMonth().then(month => {
+                        if (month.name == "Shieldmeet") {
+                            console.log('currentYear:', currentYear);
+                            if (currentYear.year % 4 != 0) {
+                                calendar.nextMonth().then(month => { renderMonth(month); });
+                            }
+                            else { renderMonth(month); }
+                        }
+                        else { renderMonth(month); }
+                    });
+                }
+                else {
+                    calendar.prevMonth().then(month => {
+                        if (month.name == "Shieldmeet") {
+                            if (currentYear.year % 4 != 0) {
+                                calendar.prevMonth().then(month => { renderMonth(month); });
+                            }
+                            else { renderMonth(month); }
+                        }
+                        else { renderMonth(month); }
+                    });
+                    
                 }
             }
-        }
+            
+        });
+    }
+
+    function renderMonth(newMonth) {
         let {
             name: name,
             commonName: common,
@@ -76,11 +89,11 @@ import { month, nextMonth, prevMonth, currentYear } from './calendar.service.js'
 
     // Call it once to initilize the calendar.
     // Will be called subsiquently from the next and prev buttons.
-    renderMonth();
+    getMonth();
 
     // Update calendar month name.
     function writeMonth(name, common) {
-        console.log(currentYear);
+        //console.log(currentYear);
         yearEl.innerHTML = currentYear.year;
         yearNameEl.innerHTML = currentYear.name;
         monthEl.innerHTML = name;
